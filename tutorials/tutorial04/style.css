@@ -7,11 +7,22 @@ body {
    font-family: 'Mulish';
    margin: 20px;
    background: rgb(235, 240, 246);
+   font-size: 16px;
 }
 
 section {
    height: 100%;
    padding: 0.5em;
+}
+
+a {
+   color:rgb(176, 217, 217);
+   text-decoration:none;
+}
+
+a:hover {
+   color:rgb(255, 255, 255);
+   text-decoration:none;
 }
 
 .container {
@@ -87,8 +98,8 @@ section {
    }
 
    body {
-      font-family: 'Mulish';
       margin: 15px;
+      font-size: 15px;
    }
 }
 
@@ -112,5 +123,6 @@ section {
 
    body {
       margin: 10px;
+      font-size: 14px;
    }
 }
