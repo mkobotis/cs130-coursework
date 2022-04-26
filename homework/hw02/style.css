@@ -1,0 +1,302 @@
+body {
+    font-family: proxima-nova, sans-serif;
+    color: #fff;
+}
+a, a:hover, a:visited, a:active { 
+    color: #fff;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/**********/
+/* Layout */
+/**********/
+aside, footer, header, nav, section, article {
+    display: flex;
+    flex-direction: column;
+}
+body {
+    overflow: hidden;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto 100px;
+    grid-template-areas:
+       "left main"
+       "bottom bottom";
+    height: 100vh;
+}
+aside {
+    background-color: #000;
+    grid-area: left;
+}
+header {
+    background: #111;
+    position: fixed;
+    width: calc(100vw - 250px);
+    left: 250px;
+}
+
+main {
+    background: #111;
+    grid-area: main;
+    min-height: calc(350px);
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    z-index: 3;
+}
+
+nav {
+    margin-top: 70px;
+}
+
+footer {
+    background: #222;
+    grid-area: bottom;
+    border-top: 0.01em solid #333;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+/***************************/
+/* Accessories & Florishes */
+/***************************/
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background-clip: padding-box;
+    min-height: 30px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: hsla(0,0%,100%,.3);
+}
+
+/***************************/
+/* Part A: Left Navigation */
+/***************************/
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+#sidebar > h1 {
+    font-family: proxima-nova, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+#sidebar > a {
+    color: #B3B3B3;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing:0.02em;
+    line-height: 35px;
+    padding-left: 10px;
+}
+
+#sidebar > a:hover {
+    color: #e3e3e3;
+}
+
+#sidebar > .selected {
+    border-left: 1px solid #1EBA54;
+}
+
+
+/********************************/
+/* Part B: Header & Nav Styling */
+/********************************/
+
+header {
+    text-transform: uppercase;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+header > a {
+    border: 1px solid gray;
+    border-radius: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin: 10px;
+}
+
+header > a:hover {
+    background-color: #222;
+}
+
+header > #profile {
+    background-color: #222;
+    border: none;
+    font-weight: 600;
+    color: #DDDDDD;
+}
+
+header > #profile:hover {
+    background-color: #333;
+}
+
+nav {
+    text-transform: uppercase;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+nav > a {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin: 10px;
+}
+
+nav > .selected {
+    border-bottom: 1px solid #1EBA54;
+}
+
+nav > a:hover {
+    border-bottom: 1px solid #1EBA54;
+}
+
+/*************************/
+/* Part C: Artists Panel */
+/*************************/
+
+#featured-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#featured-content > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1%;
+    width: 18%;
+    background-color: #222222;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: proxima-nova, sans-serif;
+    font-style: normal;
+}
+
+#featured-content > section > div {
+    width: 100%;
+}
+
+#featured-content > section > div > img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+h2 {
+    font-size: 15px;
+    font-weight: 600;
+    padding: -20px;
+    margin: 0;
+}
+
+.card-footer {
+    font-weight: 400;
+    font-size: 12px;
+    padding: -20px;
+}
+
+.card-footer > p {
+    margin: 0px;
+}
+
+.playbutton img {
+    opacity: 0;
+    height: 40px;
+    float: right;
+}
+
+.artist-card:hover .playbutton img {
+    opacity: 1;
+}
+
+/**************************/
+/* Part D: Responsive UIs */
+/**************************/
+
+@media only screen and (max-width: 1000px) {
+    #featured-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 1%;
+    }
+
+    #featured-content > section {
+        margin: 1%;
+        width: 31%;
+        background-color: #222222;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: proxima-nova, sans-serif;
+        font-style: normal;
+    }
+}
+
+/* Mobile Phone Media Query */
+@media only screen and (max-width: 600px) {
+    aside, #sidebar {
+        display: none;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #featured-content > section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1%;
+        width: 48%;
+        background-color: #222222;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: proxima-nova, sans-serif;
+        font-style: normal;
+    }
+   
+}
+
+
