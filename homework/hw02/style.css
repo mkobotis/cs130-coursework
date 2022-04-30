@@ -280,8 +280,15 @@ h2 {
     }
 
     body {
-        display: flex;
-        flex-direction: column;
+        overflow: hidden;
+        margin: 0px;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto 100px;
+        grid-template-areas:
+           "main"
+           "bottom";
+        height: 100vh;
     }
 
     #featured-content > section {
@@ -295,6 +302,10 @@ h2 {
         border-radius: 10px;
         font-family: proxima-nova, sans-serif;
         font-style: normal;
+    }
+
+    header {
+        padding: 8px;
     }
    
 }
