@@ -1,15 +1,12 @@
 const makeBigger = () => {
-   text = document.querySelector("#p").style.fontSize;
-   console.log(text);
+   document.querySelector("#h").style.fontSize = "45px";
+   document.querySelector("#p").style.fontSize = "25px";
    alert('Makes text bigger!');
 };
 
 const makeSmaller = () => {
-   header = document.querySelector("#h");
-   var fontSize = document.querySelector("h1").style.fontSize;
-   fontSize = parseFloat(fontSize);
-   document.querySelector("h1").style.fontSize = (fontSize + 5) + "px";
-   document.querySelector("#p").style.fontSize = "100px";
+   document.querySelector("#h").style.fontSize = "25px";
+   document.querySelector("#p").style.fontSize = "10px";
    alert('make smaller!');
 };
 
