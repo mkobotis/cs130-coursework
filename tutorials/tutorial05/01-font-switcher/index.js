@@ -1,16 +1,29 @@
 const makeBigger = () => {
-   document.querySelector("#h").style.fontSize = "45px";
-   document.querySelector("#p").style.fontSize = "25px";
-   alert('Makes text bigger!');
+   hfont = document.getElementById('h').style.fontSize;
+   hfont = parseFloat(hfont);
+   hfont = (hfont + 2) + 'px';
+
+   pfont = document.getElementById('p').style.fontSize;
+   pfont = parseFloat(pfont);
+   pfont = (pfont + 2) + 'px';
+
+   document.querySelector("#h").style.fontSize = hfont;
+   document.querySelector("#p").style.fontSize = pfont;
 };
 
 const makeSmaller = () => {
-   document.querySelector("#h").style.fontSize = "25px";
-   document.querySelector("#p").style.fontSize = "10px";
-   alert('make smaller!');
+   hfont = document.getElementById('h').style.fontSize;
+   hfont = parseFloat(hfont);
+   hfont = (hfont - 2) + 'px';
+
+   pfont = document.getElementById('p').style.fontSize;
+   pfont = parseFloat(pfont);
+   pfont = (pfont - 2) + 'px';
+
+   document.querySelector("#h").style.fontSize = hfont;
+   document.querySelector("#p").style.fontSize = pfont;
 };
 
 
 document.querySelector("button#a1").addEventListener('click', makeBigger);
 document.querySelector("button#a2").addEventListener('click', makeSmaller);
-
