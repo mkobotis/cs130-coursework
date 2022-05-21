@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Notewordy</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://use.typekit.net/bjw4rfp.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <script src="main.js"></script>
+        <script src="test.js"></script>
+    </head>
+    <body>
+        <header>
+            <!-- Top navigation -->
+            <search>
+                <p>What's another word for</p>
+                <input type="text" id="searchbar" placeholder="Search...">
+                <button id="searchbutton" type="submit" onclick="checkBox();"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </search>
+            <nav>
+                <a class="selected" href="">Synonyms</a>
+                <a href="">Antonyms</a>
+                <a href="">Definitions</a>
+            </nav>
+            <logo>
+                <div>
+                <img src="logo.png" height="50px">
+                </div>
+            </logo>
+        </header>
+        <main>
+            <!-- Main body -->
+            <h1>Note<span style="color: #ba5473">word</span>y</h1>
+
+            <div id="searchresult"></div>
+
+            <section id="notecard">
+                <div id="partofspeech">Welcome!</div>
+                <div id="definition"></div>
+                <div id="result">
+                    <p></p>
+                    <p>To get started, type a word in the search bar above!</p>
+                    <p></p>
+                </div>
+            </section>
+            <section id="notecard">
+                <h2>Your Word</h2>
+                <p>Synonym</p>
+                <p>Another synonym</p>
+                <p>And another one</p>
+                <p>And another one</p>
+                <p>And another one</p>
+                <p>And another one</p>
+            </section>
+        </main>
+        <sidebar>
+            <h1>Your notes</h1>
+        </sidebar>
+    </body>
+</html>
