@@ -8,6 +8,7 @@ const search = (ev) => {
     const term = document.querySelector('#search').value;
     console.log('search for:', term);
     // issue three Spotify queries at once...
+    resetSpace();
     clearTracks();
     clearAlbums();
     getTracks(term);
@@ -26,6 +27,9 @@ const clearAlbums = () => {
     document.querySelector('#albums').innerHTML = "";
 }
 
+const resetSpace = () => {
+    document.getElementById('foot').style.display = 'none';
+}
 
 let i = 5;
 
@@ -51,7 +55,7 @@ const getTracks = (term) => {
 
                 if (preview == null) {
                     const button = `
-                    <button class="track-item preview" data-preview-track="${preview}" onclick="handleTrackClick(event);">
+                    <button class="track-item preview" data-preview-track="${preview}">
                         <img src=${img} alt="Album cover for ${albumname}">
                         <i class="fas play-track fa-play" aria-hidden="true"></i>
                         <div class="label">
@@ -146,7 +150,7 @@ const getArtist = (term) => {
         const url = result.spotify_url;
 
         document.querySelector('#artist').innerHTML = `
-        <section class="artist-card" id=${id}>
+        <section class="artist-card" id=${id} onclick="topTracks();">
             <div>
                 <img src=${img} alt="Image of ${artist}">
                 <h2>${artist}</h2>
@@ -164,6 +168,7 @@ const getArtist = (term) => {
 }
 
 const handleTrackClick = (ev) => {
+    document.getElementById('foot').style.display = 'flex';
     console.log(ev.currentTarget);
     const previewUrl = ev.currentTarget.getAttribute('data-preview-track');
     const img = ev.currentTarget.childNodes[1].getAttribute('src');
@@ -179,6 +184,68 @@ const handleTrackClick = (ev) => {
         </div>`
     audioPlayer.setAudioFile(previewUrl);
     audioPlayer.play();
+}
+
+const topTracks = (ev) => {
+    clearTracks();
+    let theid = document.querySelector('.artist-card').id;
+    console.log(theid);
+
+    fetch(`https://www.apitutor.org/spotify/v1/artists/${theid}/top-tracks?country=us`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.length == 0) {
+            console.log('No results found');
+            document.querySelector('#tracks').innerHTML = `
+            <h2>No tracks found matching "${term}"</h2>`;
+        } else {
+
+            for (let i = 0; i < 5; i++) {
+                const result = data.tracks[i];
+                const preview = result.preview_url;
+                const track = result.name;
+                const artist = result.artists[0].name;
+                const img = result.album.images[0].url;
+                const albumname = result.album.name;
+
+                if (preview == null) {
+                    const button = `
+                    <button class="track-item preview" data-preview-track="${preview}">
+                        <img src=${img} alt="Album cover for ${albumname}">
+                        <i class="fas play-track fa-play" aria-hidden="true"></i>
+                        <div class="label">
+                            <h2>${track}</h2>
+                            <p>
+                                ${artist} - <i><span style="color:#686868">no preview available</span></i>
+                            </p>
+                        </div>
+                    </button>`;
+
+                    document.querySelector('#tracks').insertAdjacentHTML('beforeend', button);
+                } else {
+                    const button = `
+                    <button class="track-item preview" data-preview-track="${preview}" onclick="handleTrackClick(event);">
+                        <img src=${img}>
+                        <i class="fas play-track fa-play" aria-hidden="true"></i>
+                        <div class="label">
+                            <h2>${track}</h2>
+                            <p>
+                                ${artist}
+                            </p>
+                        </div>
+                    </button>`;
+
+                    document.querySelector('#tracks').insertAdjacentHTML('beforeend', button);
+                }
+        
+            }
+
+            }
+        })
+    .catch((error) => {
+        console.error('Error:', error);
+    })
+    
 }
 
 document.querySelector('#search').onkeyup = (ev) => {
