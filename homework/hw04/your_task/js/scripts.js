@@ -37,6 +37,8 @@ const getTracks = (term) => {
     .then(data => {
         if (data.length == 0) {
             console.log('No results found');
+            document.querySelector('#tracks').innerHTML = `
+            <h2>No tracks found matching "${term}"</h2>`;
         } else {
 
             for (let i = 0; i < 5; i++) {
@@ -45,16 +47,17 @@ const getTracks = (term) => {
                 const track = result.name;
                 const artist = result.artist.name;
                 const img = result.album.image_url;
+                const albumname = result.album.name;
 
                 if (preview == null) {
                     const button = `
                     <button class="track-item preview" data-preview-track="${preview}" onclick="handleTrackClick(event);">
-                        <img src=${img}>
+                        <img src=${img} alt="Album cover for ${albumname}">
                         <i class="fas play-track fa-play" aria-hidden="true"></i>
                         <div class="label">
                             <h2>${track}</h2>
                             <p>
-                                ${artist} - <i><span style="color:#939090">no preview available</span></i>
+                                ${artist} - <i><span style="color:#686868">no preview available</span></i>
                             </p>
                         </div>
                     </button>`;
@@ -90,6 +93,8 @@ const getAlbums = (term) => {
     .then(data => {
         if (data.length == 0) {
             console.log('No results found');
+            document.querySelector('#albums').innerHTML = `
+            <h2>No albums found matching "${term}"</h2>`;
         } else {
 
             for (const albums of data) {
@@ -101,7 +106,7 @@ const getAlbums = (term) => {
                 const album = `
                 <section class="album-card" id="${id}">
                 <div>
-                    <img src=${img}>
+                    <img src=${img} alt="Album cover for ${name}">
                     <h2>${name}</h2>
                     <div class="footer">
                         <a href=${url} target="_blank">
@@ -126,6 +131,13 @@ const getArtist = (term) => {
     .then(data => {
         if (data.length == 0) {
             console.log('No results found');
+            document.querySelector('#artist').innerHTML = `
+            <section class="noresults">
+            <div>
+                <h2>No artists found matching "${term}"</h2>
+            </div>
+        </section>`;
+            
         } else {
         const result = data[0];
         const id = result.id;
@@ -136,7 +148,7 @@ const getArtist = (term) => {
         document.querySelector('#artist').innerHTML = `
         <section class="artist-card" id=${id}>
             <div>
-                <img src=${img}>
+                <img src=${img} alt="Image of ${artist}">
                 <h2>${artist}</h2>
                 <div class="footer">
                     <a href=${url}>Spotify</a>
