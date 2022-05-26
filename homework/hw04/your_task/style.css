@@ -55,7 +55,8 @@ main {
 
 footer {
     grid-area: bottom;
-    border-top: dotted #999 1px;   
+    border-top: dotted #999 1px;
+    display: none;
 }
 
 /* ***********************************************************
@@ -300,12 +301,15 @@ header .fa-search {
 
 footer, #controls, #slider, #player {
     align-items: center;
-    display: flex;
     flex-direction: row;
     color: #444;
 }
 footer {
     justify-content: flex-start;
+}
+
+#controls, #slider, #player {
+    display: flex;
 }
 
 footer .track-item {
