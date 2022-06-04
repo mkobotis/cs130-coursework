@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="https://use.typekit.net/bjw4rfp.css">
         <link rel="stylesheet" href="https://use.typekit.net/rzi0xgf.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
     </head>
     <body>
         <header>
@@ -21,24 +23,39 @@
                 <button id="definitions" class="unselected" onclick="definitions();">Definitions</a>
             </nav>
             <logo>
-                <div>
+                <div id="logo">
                 <img src="logo.png" draggable="false" height="50px">
                 </div>
             </logo>
         </header>
         <main>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2><i>About Notewordy</i></h2>
+                    <p>Created for my CS 130 final project, Notewordy is a thesaurus and writing resource designed to help you embellish your writing and expand your vocabulary!
+                    Find synonyms, antonyms, and definitions. Discover new words. Enrich your mind.</p>
+                    <p><i><span style="color: #585858">Created by Maryarita Kobotis.</span></i></p>
+                </div>
+    
+                </div>
             <!-- Main body -->
             <div class="title">
                 <h1>Note<span style="color: #ba5473">word</span>y</h1>
                 <img src="paperclip.png" draggable="false" style="position: absolute; height: 40px; left: 2.5px;" />
             </div>
-
             <section id="side-1" class="flip top">
                 <div>
                     <div id="searchresult"></div>
+                    <div id="click"></div>
                 </div>
             </section>
             <section id="side-2" class="flip top">
+                <svg onclick="bookmark();">
+                    <polygon points="0,50 0,0 20,0 20,50 10,40 0,50" stroke="black"/>
+                </svg>
                 <div id="partofspeech"></div>
                 <div id="definition"></div>
                 <div id="result">
@@ -64,19 +81,25 @@
                 <p class="blank"> </p>
                 <p>To get started, type a word in the search bar above. Select <b>SYNONYMS</b>, <b>ANTONYMS</b>, or <b>DEFINITIONS</b>.</p>
                 <p class="blank"> </p>
-                <p>Use Notewordy for all your writing needs!</p>
+                <p>Use Notewordy for all your writing needs!</p> 
                 <p class="blank"> </p>
             </section>
-            <section id="box"></section>
+            <section>
+                <div id="box"></div>
+                <div id="overlay"></div>
+            </section>
         </main>
         <sidebar>
             <div id="papermargin"></div>
             <div id="paperspace">
-                <h1><span style="color: #ba5473">Noteable</span></h1>
+                <p class="blank"> </p>
                 <p>Keep your favorite words on hand for easy access!</p>
                 <input type="text" id="add" placeholder="Add a word!" value="">
                 <div id="valid"></div>
-                <div id="wordlist"></div>
+                <div id="wordlist">
+                    
+                    
+                </div>
             </div>
         </sidebar>
         <!--  SCRIPT BELOW  -->
