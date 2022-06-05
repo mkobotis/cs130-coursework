@@ -14,8 +14,11 @@
             <!-- Top navigation -->
             <search>
                 <p class="searchquery">What's another word for</p>
+                <label for="searchbar" hidden>Search for a word</label>
                 <input type="search" id="searchbar" placeholder="Type in a word to search!" value="">
-                <button id="searchbutton" type="submit" onclick="checkBox();"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="searchbutton" type="submit" onclick="checkBox();" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </search>
             <nav>
                 <button id="synonyms" class="selected" onclick="synonyms();">Synonyms</a>
@@ -24,7 +27,7 @@
             </nav>
             <logo>
                 <div id="logo">
-                <img src="logo.png" draggable="false" height="50px">
+                <img src="logo.png" alt="The Notewordy logo: a red pencil inside a blue circle" draggable="false" height="50px">
                 </div>
             </logo>
         </header>
@@ -35,16 +38,16 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2><i>About Notewordy</i></h2>
-                    <p>Created for my CS 130 final project, Notewordy is a thesaurus and writing resource designed to help you embellish your writing and expand your vocabulary!
-                    Find synonyms, antonyms, and definitions. Discover new words. Enrich your mind.</p>
+                    <p>Created for my CS 130 final project, Notewordy is a thesaurus and writing resource for anyone who writes, whether it be for school or for fun. 
+                        Improve your writing and expand your vocabulary! Find synonyms, antonyms, and definitions. Discover new words. Have fun!</p>
                     <p><i><span style="color: #585858">Created by Maryarita Kobotis.</span></i></p>
                 </div>
     
                 </div>
             <!-- Main body -->
             <div class="title">
-                <h1>Note<span style="color: #ba5473">word</span>y</h1>
-                <img src="paperclip.png" draggable="false" style="position: absolute; height: 40px; left: 2.5px;" />
+                <img src="graphic.png" alt="Notewordy text logo" draggable="false" style="height:60px;"/>
+                <img src="paperclip.png" alt="A paper clip" draggable="false" style="position: absolute; height: 40px; left: 2.5px;" />
             </div>
             <section id="side-1" class="flip top">
                 <div>
@@ -64,25 +67,14 @@
                     <p></p>
                 </div>
             </section>
-
-            <!--  UNCOMMENT FOR NOTECARD RESULTS !
-            <section id="notecard">
-                <div id="partofspeech"></div>
-                <div id="definition"></div>
-                <div id="result">
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                </div>
-            </section> -->
-            
             <section id="homepage" class="start">
                 <h2>Welcome!</h2>
                 <p class="blank"> </p>
-                <p>To get started, type a word in the search bar above. Select <b>SYNONYMS</b>, <b>ANTONYMS</b>, or <b>DEFINITIONS</b>.</p>
+                <p>To get started, type a word in the search bar above. Search for <span style="color: rgb(139, 187, 203)"><b>SYNONYMS</b></span>, <span style="color: #b994d7"><b>ANTONYMS</b></span>, or <span style="color: #98cb81"><b>DEFINITIONS</b></span>!</p>
                 <p class="blank"> </p>
-                <p>Use Notewordy for all your writing needs!</p> 
+                <p>Save your favorite words by bookmarking them or typing them into the sidebar.</p> 
                 <p class="blank"> </p>
+                <p>Click the pencil to learn more about us!</p> 
             </section>
             <section>
                 <div id="box"></div>
@@ -94,11 +86,15 @@
             <div id="paperspace">
                 <p class="blank"> </p>
                 <p>Keep your favorite words on hand for easy access!</p>
-                <input type="text" id="add" placeholder="Add a word!" value="">
+                <div class="add">
+                    <label for="add" hidden>Add a word to the sidebar for later reference</label>
+                    <input type="text" id="add" placeholder="Add a word!" value="">
+                    <button id="addbutton" type="submit" onclick="addWord();" aria-label="Add word">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </button>
+                </div>
                 <div id="valid"></div>
-                <div id="wordlist">
-                    
-                    
+                <div id="wordlist">  
                 </div>
             </div>
         </sidebar>
