@@ -5,6 +5,7 @@ let flipside = 'front';
 let newword = 'blank';
 let getword = 'false';
 let currentword = 'null';
+let sidebar = 'false';
 
 var sidebarwords = [];
 
@@ -72,7 +73,7 @@ const start = () => {
     console.log('down');
     let home = document.querySelector('#homepage');
     home.classList.add("startdown");
-    setTimeout(emptyBox, 1000);``
+    setTimeout(emptyBox, 1000);
 }
 
 const moveDown = () => {
@@ -137,14 +138,7 @@ const emptyBox = () => {  /// MAYBE SIMPLIFY THIS CODE AND TAKE OUT THE FIRST IF
     }
 }
 
-
 // THIS FUNCTION CHANGES THE CSS OF BUTTONS WHEN YOU NAVIGATE
-
-const init = () => {
-    const startScreen = document.querySelector('#modal');
-    console.log(startScreen);
-    startScreen.remove();
-}
 
 const visitLink = (kind) => {
     if (kind == 'syn') {
@@ -152,6 +146,9 @@ const visitLink = (kind) => {
         if (synClass == 'selected') {
             console.log('is selected');
             searchValue = 'synonym';
+            if (sidebar == 'true') {
+                getWord(newword);
+            }
         } else {
             console.log('is unselected');
             document.getElementById('synonyms').className = 'selected';
@@ -161,7 +158,9 @@ const visitLink = (kind) => {
             searchValue = 'synonym';
 
             if (theDefault == 'true') {
-                // NOTHING
+                if (sidebar == 'true') {
+                    getWord(newword);
+                }
             } else if (getword == 'true') {
                 getWord(newword);
             } else {
@@ -173,6 +172,9 @@ const visitLink = (kind) => {
         if (antClass == 'selected') {
             console.log('is selected');
             searchValue = 'antonym';
+            if (sidebar == 'true') {
+                getWord(newword);
+            }
         } else {
             console.log('is unselected');
             document.getElementById('antonyms').className = 'selected';
@@ -183,6 +185,9 @@ const visitLink = (kind) => {
 
             if (theDefault == 'true') {
                 side1.classList.add("antonyms");
+                if (sidebar == 'true') {
+                    getWord(newword);
+                }
             } else if (getword == 'true') {
                 getWord(newword);
             } else {
@@ -194,6 +199,9 @@ const visitLink = (kind) => {
         if (defClass == 'selected') {
             console.log('is selected');
             searchValue = 'definition';
+            if (sidebar == 'true') {
+                getWord(newword);
+            }
         } else {
             console.log('is unselected');
             document.getElementById('definitions').className = 'selected';
@@ -204,6 +212,9 @@ const visitLink = (kind) => {
             
             if (theDefault == 'true') {
                 side1.classList.add("definitions");
+                if (sidebar == 'true') {
+                    getWord(newword);
+                }
             } else if (getword == 'true'){
                 getWord(newword);
             } else {
@@ -245,20 +256,26 @@ const getWord = (something) => {
     currentword = something;
     getword = 'true';
     console.log(newword);
-    
-    if (flipside == 'back') {
-        flipOver();
+
+    if (theDefault == 'true') {
+        start();
     } else {
-        console.log('moving down');
-        side1.classList.add("bottom");
-        side2.classList.add("bottom");
-        moveDown();
+        if (flipside == 'back') {
+            flipOver();
+        } else {
+            console.log('moving down');
+            side1.classList.add("bottom");
+            side2.classList.add("bottom");
+            moveDown();
+        }
     }
 }
 
 // THIS FUNCTION LETS YOU CLICK A WORD LINK TO PERFORM A NEW SEARCH FROM THAT LINK
 
 const getWord1 = (something) => {  // HAD TO RENAME GETWORD
+
+    sidebar = 'false';
 
     /////// THE WHOLE DEFAULT SITUATION
 
@@ -631,7 +648,7 @@ const addWord = () => {
                     element.removeChild(element.firstChild);
                 }
             
-                var colors = ['#FFD0E5', '#FFD7B2', '#FFF6A3', '#D4F3FF', '#D3F6EA'];
+                var colors = ['#FFD0E5', '#EAD0FE', '#FFF6A3', '#CBECF7', '#D9F6D3'];
             
                 let newcolor = colors[Math.floor(Math.random() * colors.length)];
             
@@ -643,7 +660,7 @@ const addWord = () => {
                                         <button class="def" onclick="def('${word}');">DEF</button>
                                         </div>
                                         <button class="x" onclick="del(event)">
-                                            <i class="fa-regular fa-trash"></i>
+                                            <i class="fa-regular fa-trash" aria-label="Delete"></i>
                                         </button>
                                     </div>`
             
@@ -675,21 +692,27 @@ const addWord = () => {
 }
 
 const syn = (word) => {
-    console.log(word);
-    searchValue = 'synonym';
-    getWord(word);
+    newword = word;
+    sidebar = 'true';
+    console.log(newword);
+    //searchValue = 'synonym';
+    visitLink('syn');
 }
 
 const ant = (word) => {
-    console.log(word);
-    searchValue = 'antonym';
-    getWord(word);
+    newword = word;
+    sidebar = 'true';
+    console.log(newword);
+    //searchValue = 'synonym';
+    visitLink('ant');
 }
 
 const def = (word) => {
-    console.log(word);
-    searchValue = 'definition';
-    getWord(word);
+    newword = word;
+    sidebar = 'true';
+    console.log(newword);
+    //searchValue = 'synonym';
+    visitLink('def');
 }
 
 
@@ -721,7 +744,7 @@ const bookmark = () => {
                     element.removeChild(element.firstChild);
                 }
             
-                var colors = ['#f1a5c7cc', '#f7c18ecc', '#f6e977cc', '#a4d3e6cc', '#85cbb3cc'];
+                var colors = ['#FFD0E5', '#EAD0FE', '#FFF6A3', '#CBECF7', '#D9F6D3'];
             
                 let newcolor = colors[Math.floor(Math.random() * colors.length)];
             
@@ -733,7 +756,7 @@ const bookmark = () => {
                                         <button class="def" onclick="def('${word}');">DEF</button>
                                         </div>
                                         <button class="x" onclick="del(event)">
-                                            <i class="fa-regular fa-trash"></i>
+                                            <i class="fa-regular fa-trash" aria-label="Delete"></i>
                                         </button>
                                     </div>`
             
